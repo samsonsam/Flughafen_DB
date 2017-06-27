@@ -18,8 +18,8 @@ public class DBController {
     public DBController() {
         url = "jdbc:postgresql://db.f4.htw-berlin.de/_s0556350__flughafen";
         props = new Properties();
-        props.setProperty("user",user);
-        props.setProperty("password",password);
+        props.setProperty("user", user);
+        props.setProperty("password", password);
         //props.setProperty("ssl","true");
     }
 
@@ -104,16 +104,16 @@ public class DBController {
 
         PreparedStatement pstmt = conn.prepareStatement("INSERT INTO flug (flugnummer, kapazitaet, start, start_time, start_gate, ziel, ziel_time, ziel_gate, flugzeugtyp, fluggesellschaft) " +
                 "VALUES (?,?,?,?,?,?,?,?,?,?)");
-        pstmt.setInt(1, flugnummer );
+        pstmt.setInt(1, flugnummer);
         pstmt.setInt(2, kapazitaet);
         pstmt.setString(3, start);
         pstmt.setTimestamp(4, Timestamp.valueOf(startZeit));
-        pstmt.setString(5,startGate );
-        pstmt.setString(6,ziel );
-        pstmt.setTimestamp(7,Timestamp.valueOf(zielZeit) );
-        pstmt.setString(8,zielGate );
-        pstmt.setString(9,flugzeugtyp );
-        pstmt.setString(10,fluggesellschaft );
+        pstmt.setString(5, startGate);
+        pstmt.setString(6, ziel);
+        pstmt.setTimestamp(7, Timestamp.valueOf(zielZeit));
+        pstmt.setString(8, zielGate);
+        pstmt.setString(9, flugzeugtyp);
+        pstmt.setString(10, fluggesellschaft);
         try {
             pstmt.execute();
         } catch (org.postgresql.util.PSQLException e) {
@@ -129,14 +129,14 @@ public class DBController {
             PreparedStatement pstm = conn.prepareStatement("DELETE FROM flug WHERE flugnummer  = "
                     + Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine()));
             pstm.execute();
-        }catch (NumberFormatException ignored) {
+        } catch (NumberFormatException ignored) {
             System.out.println("Abbruch...");
         }
     }
 
     public void navigateTable() throws SQLException, IOException {
-        System.out.println("** Navigieren durch die Tabelle **");
-        System.out.println("Bitte waehlen sie folgende Optionen...\nn: Naechste Zeile p: Vorherige Zeile .exit: Hauptmenü");
+        System.out.println("** Navigieren durch die Tabelle **\n" +
+                "Bitte waehlen sie folgende Optionen...\nn: Naechste Zeile p: Vorherige Zeile .exit: Hauptmenü");
         PreparedStatement pstm = conn.prepareStatement("SELECT * FROM flug;", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         pstm.execute();
         ResultSet rs = pstm.getResultSet();
@@ -147,14 +147,14 @@ public class DBController {
                 case "n":
                     if (!rs.isLast()) {
                         rs.next();
-                    }else {
+                    } else {
                         System.err.println("\nEnde der Tabelle erreicht!\n");
                     }
                     break;
                 case "p":
                     if (!rs.isFirst()) {
                         rs.previous();
-                    }else {
+                    } else {
                         System.err.println("\nAnfang der Tabelle erreicht!\n");
                     }
                     break;

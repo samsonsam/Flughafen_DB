@@ -35,7 +35,8 @@ public class Main {
                     try {
                         controller.insertIntoTable();
                     } catch (Exception e) {
-                        System.err.println("Error: " + e.getMessage());;
+                        System.err.println("Error: " + e.getMessage());
+                        ;
                     }
                     break;
                 case ".delete":
@@ -67,11 +68,11 @@ public class Main {
                 case ".help":
                     System.out.println(
                             ".output        Ausgabe der Tabelle (Einfache Ausgabe aller Einträge)\n" +
-                            ".input         Eingabe neuer Datensätze (Eingabe aller einzelnen Spalten)\n" +
-                            ".delete        Löschen von Datensätzen (Einfaches Löschen über den Primärschlüssel)\n" +
-                            ".navigate      Navigieren durch die Tabelle mittels n (next) und p (previous) kann sich jeder Datensatz einzeln angezeigt werden.\n" +
-                            ".help          Anzeigen dieser Hilfe\n" +
-                            ".exit          Beenden");
+                                    ".input         Eingabe neuer Datensätze (Eingabe aller einzelnen Spalten)\n" +
+                                    ".delete        Löschen von Datensätzen (Einfaches Löschen über den Primärschlüssel)\n" +
+                                    ".navigate      Navigieren durch die Tabelle mittels n (next) und p (previous) kann sich jeder Datensatz einzeln angezeigt werden.\n" +
+                                    ".help          Anzeigen dieser Hilfe\n" +
+                                    ".exit          Beenden");
                     break;
                 default:
                     break;
